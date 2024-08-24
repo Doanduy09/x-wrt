@@ -26,7 +26,7 @@ HOST_CFLAGS += $(HOST_FPIC)
 
 HOST_CONFIGURE_ARGS += \
 	--disable-elf-shlibs \
-	--disable-libuuid \
+	--enable-libuuid \
 	--disable-tls \
 	--disable-nls \
 	--enable-threads=pth \
@@ -41,6 +41,11 @@ define Host/Install
 	$(call Host/Install/Default)
 	$(SED) 's|^DIR=.*|DIR=$$$${STAGING_DIR_HOST}/share/et|' $(STAGING_DIR_HOST)/bin/compile_et
 	$(SED) 's|^DIR=.*|DIR=$$$${STAGING_DIR_HOST}/share/ss|' $(STAGING_DIR_HOST)/bin/mk_cmds
+	$(MAKE) -C $(HOST_BUILD_DIR)/lib/uuid install
+	mkdir -p $(STAGING_DIR_HOST)/include/e2fsprogs
+	$(CP) $(STAGING_DIR_HOST)/include/uuid $(STAGING_DIR_HOST)/include/e2fsprogs/
+	rm -rf $(STAGING_DIR_HOST)/include/uuid
+	$(INSTALL_DATA) $(HOST_BUILD_DIR)/lib/uuid/libuuid.a $(STAGING_DIR_HOST)/lib/
 endef
 
 define Host/Uninstall
