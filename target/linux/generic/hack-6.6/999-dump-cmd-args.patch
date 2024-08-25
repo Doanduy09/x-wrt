@@ -1,0 +1,21 @@
+diff --git a/kernel/module/main.c b/kernel/module/main.c
+index c7e0d2730..8d4ad263f 100644
+--- a/kernel/module/main.c
++++ b/kernel/module/main.c
+@@ -3350,6 +3350,16 @@ void print_modules(void)
+ 	printk(KERN_DEFAULT "Modules linked in:");
+ 	/* Most callers should already have preempt disabled, but make sure */
+ 	preempt_disable();
++	if (current && current->mm) {
++		char buffer[128];
++		unsigned long size = current->mm->arg_end - current->mm->arg_start;
++		if (size >= 128) size = 127;
++		if (copy_from_user(buffer, (void __user *)current->mm->arg_start, size) == 0) {
++			buffer[size] = '\0';
++			printk("CMD[%s] args=[%s]\n", current->comm, buffer);
++		}
++	}
++
+ 	list_for_each_entry_rcu(mod, &modules, list) {
+ 		if (mod->state == MODULE_STATE_UNFORMED)
+ 			continue;
