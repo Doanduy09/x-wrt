@@ -638,6 +638,10 @@ define KernelPackage/mt7996-firmware/install
 		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_rom_patch.bin \
 		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_wa.bin \
 		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_wm.bin \
+		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_eeprom_233.bin \
+		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_rom_patch_233.bin \
+		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_wa_233.bin \
+		$(PKG_BUILD_DIR)/firmware/mt7996/mt7996_wm_233.bin \
 		$(1)/lib/firmware/mediatek/mt7996
 endef
 
