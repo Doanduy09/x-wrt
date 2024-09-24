@@ -73,6 +73,7 @@ jobs:
            git describe --tags $(git rev-list --tags --max-count=1) > immortalwrt_version
            git checkout -f $(git describe --tags $(git rev-list --tags --max-count=1))
            echo "src-git modem https://github.com/kiddin9/openwrt-packages.git" >> "feeds.conf.default"
+           rm -rf package/feeds/modem/aic8800
       - name: Update feeds
         run: cd openwrt && ./scripts/feeds update -a
       - name: Install feeds
