@@ -2,7 +2,7 @@
 # Copyright (c) 2023
 #
 
-name: M520
+name: G-DOCK
 on:
   schedule:
     - cron: '0 0 * * *'
