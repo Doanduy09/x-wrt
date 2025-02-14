@@ -36,6 +36,15 @@ define Device/UbiFit
 	IMAGE/factory.ubi := append-ubi
 endef
 
+define Device/ruijie_m520_1gb
+  DEVICE_VENDOR := Ruijie
+  DEVICE_MODEL := M520 (1GB RAM)
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca988x-ct luci
+  IMAGE_SIZE := 1024M
+endef
+TARGET_DEVICES += ruijie_m520_1gb
+
 include $(SUBTARGET).mk
+
 
 $(eval $(call BuildImage))
